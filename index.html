@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sherwood | Todo List</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <main class="todo-app">
+
+        <!-- HEADER -->
+        <header>
+            <h1>Todo List</h1>
+            <p class="subtitle">
+                Organize your tasks and track your progress.
+            </p>
+        </header>
+
+        <!-- ADD TASK FORM -->
+        <form id="todoForm" class="add-form">
+
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="What needs to be done?"
+                aria-label="Task name"
+                required
+            >
+
+            <input
+                type="number"
+                id="hoursInput"
+                min="0"
+                step="0.5"
+                placeholder="Hours"
+                aria-label="Estimated task hours"
+            >
+
+            <button type="submit" class="add-button">
+                Add
+            </button>
+
+        </form>
+
+        <!-- FILTER BUTTONS -->
+        <nav class="filters" aria-label="Task filters">
+
+            <button type="button" class="filter active" data-filter="all">
+                All
+            </button>
+
+            <button type="button" class="filter" data-filter="active">
+                Active
+            </button>
+
+            <button type="button" class="filter" data-filter="completed">
+                Completed
+            </button>
+
+        </nav>
+
+        <!-- MARK ALL BUTTON -->
+        <div class="bulk-action">
+            <button type="button" id="toggleAllButton">
+                Mark all done
+            </button>
+        </div>
+
+        <!-- TASK LIST -->
+        <ul id="taskList" class="task-list"></ul>
+
+        <!-- FOOTER / TASK MONITORING -->
+        <footer>
+
+            <div class="summary">
+
+                <div class="summary-stats">
+
+                    <span id="itemsLeft">0 items left</span>
+                    <span>|</span>
+                    <span id="allHours">0 hours total</span>
+                    <span>|</span>
+                    <span id="remainingHours">0 hours remaining</span>
+
+                </div>
+
+                <button type="button" id="clearCompletedButton">
+                    Clear completed
+                </button>
+
+            </div>
+
+            <!-- INSTRUCTIONS -->
+            <div class="helper">
+
+                <p>
+                    <span class="easy-text">Easy:</span> up to 2h |
+                    <span class="medium-text">Medium:</span> over 2h up to 5h |
+                    <span class="hard-text">Hard:</span> over 5h.
+                </p>
+
+                <p>
+                    Double-click a task or its label to edit the text or hours.
+                    Press Enter to save, Esc to cancel.
+                </p>
+
+            </div>
+
+        </footer>
+
+    </main>
+
+</body>
+</html>
+
+

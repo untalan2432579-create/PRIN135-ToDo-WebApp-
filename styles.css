@@ -1,0 +1,371 @@
+
+/* GOOGLE FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Lora:wght@400;500;600;700&display=swap');
+
+
+/* COLOR PALETTE */
+:root {
+    --forest-green: #344d35;
+    --sage-green: #687d55;
+    --light-sage: #e5eadb;
+    --cream: #f4ebd7;
+    --soft-cream: #faf6eb;
+    --beige: #e6d8b9;
+    --muted-gold: #b99a5b;
+    --warm-brown: #574b35;
+    --text-color: #393d2e;
+    --muted-text: #81775f;
+    --border-color: #dfd3b9;
+    --danger: #ad7468;
+}
+
+
+/* GENERAL SETTINGS */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 35px 16px;
+    min-height: 100vh;
+    background: #e9e6d7;
+    color: var(--text-color);
+    font-family: 'Lora', Georgia, serif;
+}
+
+
+/* MAIN CONTAINER */
+.todo-app {
+    width: min(100%, 760px);
+    margin: auto;
+    padding: 32px;
+    background: var(--soft-cream);
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    box-shadow: 0 12px 35px rgba(52, 77, 53, 0.12);
+}
+
+
+/* HEADER */
+h1 {
+    margin: 0 0 8px;
+    color: var(--forest-green);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 38px;
+    font-weight: 700;
+}
+
+.subtitle {
+    margin: 0 0 25px;
+    color: var(--muted-text);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* INPUT FORM */
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.add-form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 110px auto;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.add-form input,
+.edit-input {
+    min-width: 0;
+    padding: 12px;
+    color: var(--text-color);
+    background: #fffdf7;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.add-form input:focus,
+.edit-input:focus {
+    border-color: var(--sage-green);
+    box-shadow: 0 0 0 3px rgba(104, 125, 85, 0.14);
+}
+
+.add-form input::placeholder {
+    color: #a59b83;
+}
+
+.add-button {
+    padding: 0 22px;
+    color: #fffdf5;
+    background: var(--forest-green);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.add-button:hover {
+    background: var(--sage-green);
+    transform: translateY(-1px);
+}
+
+
+/* FILTER BUTTONS */
+.filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.filter {
+    padding: 8px 15px;
+    color: var(--muted-text);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.filter:hover {
+    color: var(--forest-green);
+    background: var(--light-sage);
+}
+
+.filter.active {
+    color: var(--forest-green);
+    border-color: #b8c5a8;
+    background: var(--light-sage);
+    font-weight: 700;
+}
+
+
+/* MARK ALL BUTTON */
+.bulk-action {
+    margin-bottom: 10px;
+}
+
+#toggleAllButton,
+#clearCompletedButton {
+    padding: 5px 0;
+    color: var(--sage-green);
+    background: none;
+    border: none;
+    font-size: 13px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+#toggleAllButton:hover,
+#clearCompletedButton:hover {
+    color: var(--forest-green);
+}
+
+
+/* TASK LIST */
+.task-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.task-row {
+    display: grid;
+    grid-template-columns: 12px 22px minmax(0, 1fr) auto 24px;
+    align-items: center;
+    gap: 9px;
+    min-height: 58px;
+    border-bottom: 1px solid var(--border-color);
+    transition: background 0.2s;
+}
+
+.task-row:hover {
+    background: rgba(230, 216, 185, 0.20);
+}
+
+.task-row::before {
+    content: "•";
+    color: var(--sage-green);
+    text-align: center;
+    font-size: 17px;
+}
+
+.task-checkbox {
+    width: 17px;
+    height: 17px;
+    margin: 0;
+    accent-color: var(--sage-green);
+    cursor: pointer;
+}
+
+.task-text {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    color: var(--text-color);
+    cursor: text;
+    font-size: 14px;
+}
+
+
+/* COMPLETED TASKS */
+.task-row.completed .task-text {
+    color: #a49c89;
+    text-decoration: line-through;
+}
+
+
+/* DIFFICULTY LABELS */
+.difficulty {
+    padding: 5px 10px;
+    border: 1px solid currentColor;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: text;
+}
+
+.difficulty.easy {
+    color: #597c53;
+    background: #e7eddf;
+}
+
+.difficulty.medium {
+    color: #98783b;
+    background: #f3ead2;
+}
+
+.difficulty.hard {
+    color: #a66d5e;
+    background: #f3e3dc;
+}
+
+
+/* DELETE BUTTON */
+.delete-button {
+    width: 24px;
+    height: 24px;
+    color: #a69b83;
+    background: transparent;
+    border: none;
+    border-radius: 5px;
+    font-size: 19px;
+    transition: all 0.2s;
+}
+
+.delete-button:hover {
+    color: var(--danger);
+    background: #f3e3dc;
+}
+
+
+/* TASK A AND B EDITING INPUTS */
+.edit-input {
+    width: 100%;
+    padding: 6px 8px;
+}
+
+.edit-hours {
+    width: 95px;
+}
+
+
+/* FOOTER */
+footer {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-color);
+    color: var(--muted-text);
+    font-size: 13px;
+}
+
+.summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.summary-stats {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    flex-wrap: wrap;
+}
+
+
+/* HELPER TEXT */
+.helper {
+    margin-top: 22px;
+    color: #948a72;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.helper p {
+    margin: 5px 0;
+}
+
+.easy-text {
+    color: #597c53;
+}
+
+.medium-text {
+    color: #98783b;
+}
+
+.hard-text {
+    color: #a66d5e;
+}
+
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 560px) {
+
+    body {
+        padding: 20px 10px;
+    }
+
+    .todo-app {
+        padding: 22px 16px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    .add-form {
+        grid-template-columns: minmax(0, 1fr) 85px;
+    }
+
+    .add-button {
+        grid-column: 1 / -1;
+        min-height: 42px;
+    }
+
+    .task-row {
+        grid-template-columns: 10px 20px minmax(0, 1fr) auto 22px;
+        gap: 6px;
+    }
+
+    .difficulty {
+        padding: 4px 7px;
+        font-size: 11px;
+    }
+
+    .summary {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
